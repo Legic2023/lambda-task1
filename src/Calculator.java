@@ -1,15 +1,6 @@
-//
-// Source code recreated from a .class file by IntelliJ IDEA
-// (powered by FernFlower decompiler)
-//
-
 import java.io.PrintStream;
 import java.util.Objects;
-import java.util.function.BinaryOperator;
-import java.util.function.Consumer;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
+import java.util.function.*;
 
 public class Calculator {
     static Supplier<Calculator> instance = Calculator::new;
@@ -22,9 +13,19 @@ public class Calculator {
     BinaryOperator<Integer> multiply = (x, y) -> {
         return x * y;
     };
+
+
     BinaryOperator<Integer> devide = (x, y) -> {
-        return x / y;
+        try {                                  // ловим ошибку
+            return x / y;                      // возвращаем результат вычисления, если нет ошибок
+
+        } catch (ArithmeticException e) {
+            System.out.println("Ошибка: " + e); // вывод наименования ошибки в консоль
+            return 0;                           // возвращаем 0, если ошибка
+        }
     };
+
+
     UnaryOperator<Integer> pow = (x) -> {
         return x * x;
     };
@@ -34,11 +35,8 @@ public class Calculator {
     Predicate<Integer> isPositive = (x) -> {
         return x > 0;
     };
-    Consumer<Integer> println;
+    Consumer<Integer> println = System.out::println;
 
-    public Calculator() {
-        PrintStream var10001 = System.out;
-        Objects.requireNonNull(var10001);
-        this.println = var10001::println;
-    }
+
 }
+

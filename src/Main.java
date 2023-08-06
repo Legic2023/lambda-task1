@@ -4,15 +4,7 @@ public class Main {
 
         int a = calc.plus.apply(1, 2);
         int b = calc.minus.apply(1, 1); // делитель b = 0
-        int c; // объявление переменной c
-
-        try {
-            c = calc.devide.apply(a, b); // обработка исключения
-
-        } catch (ArithmeticException e) {
-            System.out.println("Ошибка: " + e); // вывод наименования ошибки в консоль
-            c = 0; // инициализация переменной c
-        }
+        int c = calc.devide.apply(a, b);
 
         calc.println.accept(c);
 
